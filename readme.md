@@ -19,7 +19,9 @@ red5 本来是集成tomcat的服务, 现在至少先去除tomcat,先作一个纯
 
 ### mark
 
-ProviderService:123 startBoardcast ProviderService:158 stopBoardcast org.red5.server.stream.StreamService:613.publish(java.lang.String, java.lang.String)
+ProviderService:123 startBoardcast   
+ProviderService:158 stopBoardcast   
+org.red5.server.stream.StreamService:613.publish(java.lang.String, java.lang.String)
 
 ### 改造方案
 
