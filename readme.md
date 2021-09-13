@@ -17,6 +17,16 @@ red5 本来是集成tomcat的服务, 现在至少先去除tomcat,先作一个纯
 用obs推流 push rtmp://localhost:1935/live xxxxxx  
 用VLC播放 play rtmp://localhost:1935/live/xxxxxx
 
-mark provider service 123 startBoardcast 158 stopBoardcast
+### mark
+
+ProviderService:123 startBoardcast ProviderService:158 stopBoardcast org.red5.server.stream.StreamService:613.publish(java.lang.String, java.lang.String)
+
+### 改造方案
+
+org.red5.server.stream.ClientBroadcastStream 这个类里面有一个 autoRecording 的配置, 可以参考这个 RecordingListener 转写一个 FlvDispatchListener, 并且由于的内部流, 不需要额外的连接消耗,还可以实现查看当前所有的rtmp推流 将原来的文件内容写到Http流当中,然后就可以集成这个red5-slim到vediojc当中
+
+### 鉴权方案
+
+org.red5.server.stream.StreamService:613.publish 方法中已经获取了推流中获取的参数, 可以从中嵌入鉴权的业务代码
 
 --TODO 改造成spring-boot-auto-starter
